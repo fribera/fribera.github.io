@@ -1,28 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
+
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Fribera.github.io by fribera</title>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Fribera.github.io : mapas con la API de cartodb" />
 
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Fribera.github.io</title>
   </head>
+
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Fribera.github.io</h1>
-        <p>mapas con la API de cartodb</p>
 
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/fribera">View on GitHub</a>
 
-        <p class="view"><a href="https://github.com/fribera">View My GitHub Profile</a></p>
+          <h1 id="project_title">Fribera.github.io</h1>
+          <h2 id="project_tagline">mapas con la API de cartodb</h2>
 
-      </header>
-      <section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
         <h3>
 <a name="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
@@ -40,26 +44,231 @@ $ git checkout gh-pages
 
 <p>We've crafted some handsome templates for you to use. Go ahead and continue to layouts to browse through them. You can easily go back to edit your page before publishing. After publishing your page, you can revisit the page generator and switch to another theme. Your Page content will be preserved if it remained markdown format.</p>
 
-<h3>
-<a name="rather-drive-stick" class="anchor" href="#rather-drive-stick"><span class="octicon octicon-link"></span></a>Rather Drive Stick?</h3>
-
-<p>If you prefer to not use the automatic generator, push a branch named <code>gh-pages</code> to your repository to create a page manually. In addition to supporting regular HTML content, GitHub Pages support Jekyll, a simple, blog aware static site generator written by our own Tom Preston-Werner. Jekyll makes it easy to create site-wide headers and footers without having to copy them across every page. It also offers intelligent blog support and other advanced templating features.</p>
-
-<h3>
-<a name="authors-and-contributors" class="anchor" href="#authors-and-contributors"><span class="octicon octicon-link"></span></a>Authors and Contributors</h3>
-
-<p>You can <a href="https://github.com/blog/821" class="user-mention">@mention</a> a GitHub username to generate a link to their profile. The resulting <code>&lt;a&gt;</code> element will link to the contributor's GitHub Profile. For example: In 2007, Chris Wanstrath (<a href="https://github.com/defunkt" class="user-mention">@defunkt</a>), PJ Hyett (<a href="https://github.com/pjhyett" class="user-mention">@pjhyett</a>), and Tom Preston-Werner (<a href="https://github.com/mojombo" class="user-mention">@mojombo</a>) founded GitHub.</p>
-
-<h3>
-<a name="support-or-contact" class="anchor" href="#support-or-contact"><span class="octicon octicon-link"></span></a>Support or Contact</h3>
-
-<p>Having trouble with Pages? Check out the documentation at <a href="http://help.github.com/pages">http://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
+<ul>
+<li>  &lt;! (c) Francisco Ribera Ruiz 2014 --&gt;</li>
+<li>  </li>
+<li>  </li>
+<li>    </li>
+<li>    &lt;!--[if lte IE 8]&gt;</li>
+<li>      </li>
+<li>    &lt;![endif]--&gt;</li>
+<li>    </li>
+<li>    </li>
+<li>      html, body {width:100%; height:100%; padding: 0; margin: 0;}</li>
+<li>      #map { width:100%; height:100%; background: black;}</li>
+<li>      #menu { position: absolute; top: 5px; left: 50px; width: 800px; height:60px; background: transparent; z-index:10;}</li>
+<li>      #menu a { </li>
+<li>        margin: 10px 10px 0 0;</li>
+<li>        float: right;</li>
+<li>        vertical-align: baseline;</li>
+<li>        width: 80px;</li>
+<li>        padding: 10px;</li>
+<li>        text-align: center;</li>
+<li>        font: bold 11px "Helvetica",Arial;</li>
+<li>        line-height: normal;</li>
+<li>        color: #555;</li>
+<li>        border-radius: 4px;</li>
+<li>        border: 1px solid #777777;</li>
+<li>        background: #ffffff;</li>
+<li>        text-decoration: none;</li>
+<li>        cursor: pointer;</li>
+<li>      }</li>
+<li>      #menu a.selected,</li>
+<li>      #menu a:hover { </li>
+<li>        color: #F84F40;</li>
+<li>      }</li>
+<li>      #combo {background-color:white;bottom:35px;cursor:pointer;padding:15px;position:absolute;left:15px;z-index:1;"&gt;</li>
+<li><br></li>
+<li>    </li>
+<li><br></li>
+<li>    </li>
+<li>    var sublayers = [];</li>
+<li>    var total = 0;</li>
+<li>    var Opciones = {};</li>
+<li>    var antiguedad = "";</li>
+<li>    var sxxi = "";</li>
+<li>    var sxx = "";</li>
+<li>    var sxix = "";</li>
+<li>    var older = "";</li>
+<li>    var marcados = 0;</li>
+<li>      Opciones.app = {</li>
+<li><br></li>
+<li>         updateSiglo: function(el) {</li>
+<li>          marcados = 0;</li>
+<li><br></li>
+<li>          sxxi = "";</li>
+<li>          x = document.getElementById("S.XXI").checked;</li>
+<li>          if (x === true) </li>
+<li>          {</li>
+<li>          sxxi = sxxi + "  ano_construccion between 2001 and 2012  ";</li>
+<li>          marcados = marcados +1</li>
+<li>          }  else sxxi = ""</li>
+<li><br></li>
+<li>          sxx = "";</li>
+<li>          x = document.getElementById("S.XX").checked;</li>
+<li>          if (x === true) </li>
+<li>          {<br>
+</li>
+<li>          if (marcados &gt; 0) sxx = " or ";</li>
+<li>          sxx = sxx + " ano_construccion between 1901 and 2000  ";</li>
+<li>          marcados = marcados +1;</li>
+<li>          }  else sxx = "";</li>
+<li><br></li>
+<li>          sxix = "";</li>
+<li>          x = document.getElementById("S.XIX").checked;</li>
+<li>          if (x === true) </li>
+<li>          {</li>
+<li>          if (marcados &gt; 0) sxix = " or ";</li>
+<li>          sxix = sxix + " ano_construccion between 1801 and 1900  ";</li>
+<li>          marcados = marcados +1;</li>
+<li>          }  else sxix = "";</li>
+<li><br></li>
+<li>          older = "";</li>
+<li>          x = document.getElementById("older").checked;</li>
+<li>          if (x === true) </li>
+<li>          { </li>
+<li>          if (marcados &gt; 0) older = " or ";</li>
+<li>          older = older + " ano_construccion &lt; 1801";</li>
+<li>          marcados = marcados +1;</li>
+<li>          }  else older = "";</li>
+<li><br></li>
+<li>          if (marcados &gt; 0)</li>
+<li>          {</li>
+<li>          antiguedad = "and (" +sxxi +sxx +sxix +older +")";</li>
+<li>          } else antiguedad = "and ano_construccion &lt; 0";</li>
+<li>          Opciones.app.updateQuery();</li>
+<li>         },</li>
+<li><br></li>
+<li>         updateQuery: function() {</li>
+<li><br></li>
+<li><br></li>
+<li>          if (total == 0) </li>
+<li>          {</li>
+<li>            sublayers[0].set({</li>
+<li>              sql: "SELECT * FROM bcn_construcciones_parcelas where district = '1'" +antiguedad</li>
+<li>            });</li>
+<li>          }<br>
+</li>
+<li>          else </li>
+<li>          {</li>
+<li>            sublayers[0].set({</li>
+<li>              sql: "SELECT * FROM bcn_construcciones_parcelas where district = '1' and  cbarri ='"+total+"'" +antiguedad</li>
+<li>            });</li>
+<li>          }</li>
+<li>         }</li>
+<li>      }</li>
+<li><br></li>
+<li>    var map;</li>
+<li>    function init(){</li>
+<li>      // initiate leaflet map</li>
+<li>      map = new L.Map('map', { </li>
+<li>        center: [41.384,2.18],</li>
+<li>        zoom: 15</li>
+<li>      })</li>
+<li><br></li>
+<li>      L.tileLayer('<a href="https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/%7Bz%7D/%7Bx%7D/%7By%7D.png">https://dnv9my2eseobd.cloudfront.net/v3/cartodb.map-4xtxp73f/{z}/{x}/{y}.png</a>', {</li>
+<li>        attribution: 'Mapbox <a href="http://mapbox.com/about/maps" target="_blank">Terms &amp; Feedback</a>'</li>
+<li>      }).addTo(map);</li>
+<li>      // crear capa</li>
+<li>        var layerUrl = '<a href="http://fribera.cartodb.com/api/v2/viz/6e00fadc-adea-11e3-9ea7-0edbca4b5057/viz.json">http://fribera.cartodb.com/api/v2/viz/6e00fadc-adea-11e3-9ea7-0edbca4b5057/viz.json</a>';</li>
+<li><br></li>
+<li>        cartodb.createLayer(map, layerUrl)</li>
+<li>        .addTo(map)</li>
+<li>        .on('done', function(layer) {</li>
+<li><br></li>
+<li>               var sublayer = layer.getSubLayer(0);</li>
+<li><br></li>
+<li>               sublayers.push(sublayer);</li>
+<li>        $('.button').click(function() {</li>
+<li>          $('.button').removeClass('selected'); $(this).addClass('selected');</li>
+<li>          total = $(this).attr('id');</li>
+<li>          Opciones.app.updateQuery();</li>
+<li>        })</li>
+<li>        }).on('error', function() {</li>
+<li>        //log the error</li>
+<li>        });</li>
+<li>    }</li>
+<li>    </li>
+<li>  </li>
+<li><br></li>
+<li>  </li>
+<li>    <div></div>
+</li>
+<li>    // menu de barrios</li>
+<li>    <div>
+<li>      <a href="#4" value="4">Santa Caterina</a> </li>
+<li>      <a href="#3" value="3">Barceloneta</a> </li>
+<li>      <a href="#2" value="2">Gotic</a> </li>
+<li>      <a href="#1" value="1">El Raval</a> </li>
+<li>      <a href="#0" value="0">Ciutat Vella</a> </li>
+<li>    </li>
+</div>
+</li>
+<li>    // combo de seleccion de siglos</li>
+<li>    <div>
+<li>    <table>
+<li>      <tr>
+<td>
+<li>          </li>
+<li>          </li>
+</td>
+<li>          <td>
+<li>          S.XXI</li>
+<li>          </li>
+</td>
+</li>
+<li>      </li>
+</tr>
+</li>
+<li>      <tr>
+<td>
+<li>          </li>
+<li>          </li>
+</td>
+<li>          <td>S.XX
+<li>          </li>
+</td>
+</li>
+<li>      </li>
+</tr>
+</li>
+<li>      <tr>
+<td><li>          </li></td>
+<li>          <td>S.XIX
+<li>          </li>
+</td>
+</li>
+<li>      </li>
+</tr>
+</li>
+<li>      <tr>
+<td><li>          </li></td>
+<li>          <td>older
+<li>          </li>
+</td>
+</li>
+<li>      </li>
+</tr>
+</li>
+<li>     </li>
+</table>
+</li>
+<li>  </li>
+</div> </li>
+<li>  </li>
+<li>  </li>
+</ul><p>``</p>
       </section>
-      <footer>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
+
     
+
   </body>
 </html>
